@@ -21,11 +21,10 @@ article .container .row .video-container embed {
   margin-top: 0;
 }
 article .container .row blockquote {
-  font-style: italic;
-  font-family: font-serif;
-  font-size: 1.2em;
-  padding: 0 30px 15px;
-  text-align: center;
+  font-size: 0.9em;
+  padding: 0 20px 15px;
+  text-align: left;
+  background: #f6f6f6;
 }
 article .container .row blockquote footer {
   border-top: none;
