@@ -3,169 +3,167 @@
 
 <!-- Head tag -->
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="danny在 Github 上的个人博客">
+    <meta name="keyword" content="null">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="丹尼哥哥" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        javascript类型判断｜丹尼哥哥&#39;s blog
+        
+    </title>
 
-    <!--Description-->
-    
-        <meta name="description" content="js六大数据类型：number、string、object、Boolean、null、undefined
-typeof最常见的类型判断方法是：typeof，typeof能判断绝大多数的类型，如
-1234567type of &amp;apos;aaa&amp;apos;  //stringtype of 111 /">
-    
-
-    <!--Author-->
-    
-        <meta name="author" content="DannyAce">
-    
-
-    <!--Open Graph Title-->
-    
-        <meta property="og:title" content="javascript类型判断"/>
-    
-
-    <!--Open Graph Description-->
-    
-
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="DannyAce"/>
-
-    <!--Type page-->
-    
-        <meta property="og:type" content="article" />
-    
-
-    <!--Page Cover-->
-    
-
-        <meta name="twitter:card" content="summary" />
-    
-
-    <!-- Title -->
-    
-    <title>javascript类型判断 - DannyAce</title>
+    <link rel="canonical" href="https://dannyace.github.io/2017/05/13/javascript类型判断/">
 
     <!-- Bootstrap Core CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/blog-style.css">
 
-    <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Gallery -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
-
-    <!-- Google Analytics -->
-    
-
-
-    <!-- favicon -->
-    
-	
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
 </head>
 
+<style>
 
-<body>
-
-    <!-- Menu -->
-    <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    header.intro-header {
+        background-image: url('images/head.png')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">哈哈哈哈哈</a>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    丹尼哥哥
+                </span>
+                's Blog
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                
-                    <li>
-                        <a href="/">
-                            
-                                Home
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/archives">
-                            
-                                Archives
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/tags">
-                            
-                                Tags
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/categories">
-                            
-                                Categories
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="https://github.com/DannyAce">
-                            
-                                <i class="fa fa-github fa-stack-2x"></i>
-                            
-                        </a>
-                    </li>
-                
-            </ul>
-        </div>
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
         <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/Tags/">Tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
     </div>
     <!-- /.container -->
 </nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
 
-    <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in your post front-matter: cover -->
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
 
-<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://oty30rmg9.bkt.clouddn.com/default-bg.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://oty30rmg9.bkt.clouddn.com/default-bg.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
                     <h1>javascript类型判断</h1>
                     
                     <span class="meta">
-                        <!-- Date and Author -->
-                        
-                        
-                            2017-05-13
-                        
+                         作者 丹尼哥哥
+                        <span>
+                          日期 2017-05-13
+                         </span>
                     </span>
+                    <div class="tags text-center">
+                        
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            javascript类型判断
+        </span>
     </div>
 </header>
 
@@ -173,101 +171,207 @@ typeof最常见的类型判断方法是：typeof，typeof能判断绝大多数�
 <article>
     <div class="container">
         <div class="row">
-
-            <!-- Tags and categories -->
-           
-
-            <!-- Gallery -->
-            
-
-            <!-- Post Main Content -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <p>js六大数据类型：number、string、object、Boolean、null、undefined</p>
 <h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><p>最常见的类型判断方法是：typeof，typeof能判断绝大多数的类型，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">type of &apos;aaa&apos;  //string</div><div class="line">type of 111 //number</div><div class="line">typeof true //boolean</div><div class="line">typeof a  //undefined</div><div class="line">typeof &#123;&#125;  //object</div><div class="line">typeof function()&#123;&#125;   //function</div><div class="line">typeof undefined  //undefined</div></pre></td></tr></table></figure>
-<p>但如果是以下情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">typeof []  //object</div><div class="line">typeof null  //object</div><div class="line">var aaa= new Date();</div><div class="line">typeof aaa  //object</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">type of &apos;aaa&apos;  //string</div><div class="line">type of 111 //number</div><div class="line">typeof true //boolean</div><div class="line">typeof a  //undefined</div><div class="line">typeof &#123;&#125;  //object</div><div class="line">typeof function()&#123;&#125;   //function</div><div class="line">typeof undefined  //undefined</div></pre></td></tr></table></figure>
+<p>但如果是以下情况<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">typeof []  //object</div><div class="line">typeof null  //object</div><div class="line">var aaa= new Date();</div><div class="line">typeof aaa  //object</div></pre></td></tr></table></figure></p>
 <p>可以看到，这些情况下返回的都是object，那到底如何能够更细分，有没有比typeof更好的方法来判断类型？</p>
 <h2 id="Obejct-prototype-toString"><a href="#Obejct-prototype-toString" class="headerlink" title="Obejct.prototype.toString"></a>Obejct.prototype.toString</h2><p>答案当然是肯定的！它就是Obejct.prototype.toString<br>我们先来看下es5规范中对它的定义：<a href="https://es5.github.io/#x15.2.4.2" target="_blank" rel="external">15.2.4.2</a><br>翻成中文就是</p>
 <blockquote>
 <p>在toString方法被调用时,会执行下面的操作步骤:<br>如果this的值为undefined,则返回”[object Undefined]”.<br>如果this的值为null,则返回”[object Null]”.<br>让O成为调用ToObject(this)的结果.<br>让class成为O的内部属性[[Class]]的值.<br>返回三个字符串”[object “, class, 以及 “]”连接后的新字符串.</p>
 </blockquote>
 <p>通过规范，我们至少知道了调用 Object.prototype.toString 会返回一个由 “[object “ 和 class 和 “]” 组成的字符串，而 class 是要判断的对象的内部属性。</p>
-<p>让我们写个demo：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var   gettype=Object.prototype.toString</div><div class="line">Object.prototype.toString.call(&apos;aaaa&apos;)     // [object String]</div><div class="line">Object.prototype.toString.call(2222) // [object Number]</div><div class="line">Object.prototype.toString.call(true)  // [object Boolean]</div><div class="line">Object.prototype.toString.call(undefined)  // [object Undefined]</div><div class="line">Object.prototype.toString.call(null)  // [object Null]</div><div class="line">Object.prototype.toString.call(&#123;&#125;)   // [object Object]</div><div class="line">Object.prototype.toString.call([])    // [object Array]</div><div class="line">Object.prototype.toString.call(function()&#123;&#125;)     // [object Function]</div><div class="line">Object.prototype.toString.call(new Date())    // [object Date]</div></pre></td></tr></table></figure></p>
-<p>除了上面这些常用类型，其实包括dom也是可以判断的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Object.prototype.toString.call(document)   // [object HTMLDocument]</div><div class="line">Object.prototype.toString.call(document.body) // [object HTMLBodyElement]</div></pre></td></tr></table></figure></p>
-<p>所以Object.prototype.toString几乎可以满足js中所有对类型的判断<br>一般实际使用时候可以做封装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var  util = &#123;</div><div class="line">    isObj:function(o)&#123;</div><div class="line">        return  Object.prototype.toString.call(o)==&quot;[object Object]&quot;;</div><div class="line">     &#125;,</div><div class="line">     isArray:function(o)&#123;</div><div class="line">        return  Object.prototype.toString.call(o)==&quot;[object Array]&quot;;</div><div class="line">     &#125;, </div><div class="line">     ........</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="Array-isArray"><a href="#Array-isArray" class="headerlink" title="Array.isArray"></a>Array.isArray</h2><p>针对数组，本身有一个原生方法来判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.isArray([1,2,3])  //true</div></pre></td></tr></table></figure></p>
+<p>让我们写个demo：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">var   gettype=Object.prototype.toString</div><div class="line">Object.prototype.toString.call(&apos;aaaa&apos;)     // [object String]</div><div class="line">Object.prototype.toString.call(2222) // [object Number]</div><div class="line">Object.prototype.toString.call(true)  // [object Boolean]</div><div class="line">Object.prototype.toString.call(undefined)  // [object Undefined]</div><div class="line">Object.prototype.toString.call(null)  // [object Null]</div><div class="line">Object.prototype.toString.call(&#123;&#125;)   // [object Object]</div><div class="line">Object.prototype.toString.call([])    // [object Array]</div><div class="line">Object.prototype.toString.call(function()&#123;&#125;)     // [object Function]</div><div class="line">Object.prototype.toString.call(new Date())    // [object Date]</div></pre></td></tr></table></figure></p>
+<p>除了上面这些常用类型，其实包括dom也是可以判断的<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Object.prototype.toString.call(document)   // [object HTMLDocument]</div><div class="line">Object.prototype.toString.call(document.body) // [object HTMLBodyElement]</div></pre></td></tr></table></figure></p>
+<p>所以Object.prototype.toString几乎可以满足js中所有对类型的判断<br>一般实际使用时候可以做封装：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">var  util = &#123;</div><div class="line">    isObj:function(o)&#123;</div><div class="line">        return  Object.prototype.toString.call(o)==&quot;[object Object]&quot;;</div><div class="line">     &#125;,</div><div class="line">     isArray:function(o)&#123;</div><div class="line">        return  Object.prototype.toString.call(o)==&quot;[object Array]&quot;;</div><div class="line">     &#125;, </div><div class="line">     ........</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Array-isArray"><a href="#Array-isArray" class="headerlink" title="Array.isArray"></a>Array.isArray</h2><p>针对数组，本身有一个原生方法来判断<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Array.isArray([1,2,3])  //true</div></pre></td></tr></table></figure></p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>到这里，常用的js类型判断基本都在这里，可以根据项目实际情况选择使用。</p>
 
+                <hr>
+                
 
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/06/28/Immutable-js以及在react-redux项目中的实践/" data-toggle="tooltip" data-placement="top"
+                           title="Immutable.js以及在react+redux项目中的实践">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
                 
             </div>
 
-            <!-- Comments -->
-            
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    
-
-
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#typeof"><span class="toc-text">typeof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Obejct-prototype-toString"><span class="toc-text">Obejct.prototype.toString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-isArray"><span class="toc-text">Array.isArray</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text">结语</span></a></li></ol>
                 </div>
-            
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
 </article>
 
-    <!-- Footer -->
-    <hr />
 
+
+
+
+
+
+<!-- Footer -->
 <!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
                 <ul class="list-inline text-center">
-                    
+                
+                
+                
 
-                    
+                
 
-                    
-                        <li>
-                            <a href="https://github.com/DannyAce" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    
+                
 
-                    
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/dannyAce">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
 
-                    
+                
 
-                    
                 </ul>
-                <p class="copyright text-muted">&copy; 2017 DannyAce<br></p>
-                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
-                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted">
+                    Copyright &copy; 丹尼哥哥 2017
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
             </div>
         </div>
     </div>
 </footer>
 
-
-    <!-- After footer scripts -->
-    
 <!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 
-<!-- Bootstrap -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
 
-<!-- Gallery -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
 
-<!-- Disqus Comments -->
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://dannyace.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
 
 
 
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = '253c3e624b48d297e5349c0a0cedb374';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="images/head.png">
 </body>
 
 </html>
