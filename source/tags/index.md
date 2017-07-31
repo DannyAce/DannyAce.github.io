@@ -1,5 +1,5 @@
 ---
 title: Tags
-type: "tags"
-date: 2017-06-28 17:34:48
+date: 2017-07-31 14:41:43
+layout: tags
 ---

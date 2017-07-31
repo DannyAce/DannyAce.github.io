@@ -2,6 +2,7 @@
 title: Immutable.js以及在react+redux项目中的实践
 date: 2017-06-28 14:31:09
 tags: [react,redux,immutable,immutable.js]
+header-img: immutable.png
 ---
 > 本文首发于掘金:[https://juejin.im/post/5948985ea0bb9f006bed7472](https://juejin.im/post/5948985ea0bb9f006bed7472)，转载请注明
 
