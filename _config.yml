@@ -126,9 +126,9 @@ theme: Anisina
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: 
-  repo: 
-  branch: 
+     type: git
+     repo: https://github.com/DannyAce/DannyAce.github.io.git
+     branch: master
 
 
 # img CDN path

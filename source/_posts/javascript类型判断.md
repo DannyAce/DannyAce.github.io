@@ -43,7 +43,7 @@ typeof aaa  //object
 通过规范，我们至少知道了调用 Object.prototype.toString 会返回一个由 "[object " 和 class 和 "]" 组成的字符串，而 class 是要判断的对象的内部属性。
 
 让我们写个demo：
-```
+```javascript
 var   gettype=Object.prototype.toString
 Object.prototype.toString.call('aaaa')     // [object String]
 Object.prototype.toString.call(2222) // [object Number]
@@ -57,15 +57,13 @@ Object.prototype.toString.call(new Date())    // [object Date]
 
 ```
 除了上面这些常用类型，其实包括dom也是可以判断的
-```
+```javascript
 Object.prototype.toString.call(document)   // [object HTMLDocument]
 Object.prototype.toString.call(document.body) // [object HTMLBodyElement]
-
 ```
-
 所以Object.prototype.toString几乎可以满足js中所有对类型的判断
 一般实际使用时候可以做封装：
-```
+```javascript
 var  util = {
     isObj:function(o){
         return  Object.prototype.toString.call(o)=="[object Object]";
@@ -80,7 +78,7 @@ var  util = {
 
 ## Array.isArray
 针对数组，本身有一个原生方法来判断
-```
+```javascript
 Array.isArray([1,2,3])  //true
 
 ```

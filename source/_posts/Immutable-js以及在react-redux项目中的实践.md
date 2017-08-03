@@ -44,7 +44,7 @@ header-img: immutable.png
 ## 1.1 原生js引用类型的坑
 先考虑如下两个场景：
 
-```
+```javascript
 // 场景一
 var obj = {a:1, b:{c:2}};
 func(obj);
@@ -103,7 +103,7 @@ immutable.js主要有三大特性：
 &emsp;&emsp;想想，如果在实际业务中，数据量非常大，如在我们点餐业务中，商户的菜单列表可能有几百道菜，一个array的长度是几百，要操作这样一个array，如果应用惰性操作的特性，会节省非常多的性能
 ## 1.3 常用api介绍
 
-```
+```javascript
 //Map()  原生object转Map对象 (只会转换第一层，注意和fromJS区别)
 immutable.Map({name:'danny', age:18})
   
@@ -172,7 +172,7 @@ immutablejs还有很多类似underscore语法糖，使用immutable.js之后完�
 &emsp;&emsp;但当你真正使用react-addons-perf去查看之后你会发现，WTF？？！一次操作竟然导致了这么多没任何关系的component重新渲染了？？
 &emsp;&emsp;**什么原因？？**
 #### shouldComponentUpdate
-```
+```javascript
 shouldComponentUpdate (nextProps, nextState) {
    return nextProps.id !== this.props.id;
 };
@@ -187,7 +187,7 @@ shouldComponentUpdate (nextProps, nextState) {
 &emsp;&emsp;shallowCompare只是进行了对象的顶层节点比较，也就是浅比较，上图中的props由于结构比较复杂，在深层的对象中有count不一样，所以这种情况无法通过shallowCompare处理。
 **shallowEqual源码：**
 
-```
+```javascript
 function shallowEqual(objA, objB) {
   if (is(objA, objB)) {
     return true;
@@ -231,7 +231,7 @@ function shallowEqual(objA, objB) {
 &emsp;&emsp;这么做的目的其实就是为了防止在大型项目中，原生js与immutable混用，导致coder自己都不清楚一个变量中存储的到底是什么类型的数据。
 &emsp;&emsp;那有人可能会觉得说，在一个全新项目中这样是可行的，但在一个已有的成熟项目中，要将所有的变量全部改成immutablejs，代码的改动量与侵入性非常大，风险也高。那他们会想到，将reducer中的state用fromJS()改成immutable进行state操作，然后再通过toJS()转成原生js返回出来，这样不就可以即让state变得可追溯，又不用去修改reducer以外的代码，代价非常的小。
 
-```
+```javascript
 export default function indexReducer(state, action) {
     switch (action.type) {
     case RECEIVE_MENU:
@@ -248,7 +248,7 @@ export default function indexReducer(state, action) {
 ### 2.2.2 具体集成代码实现方法
 #### redux-immutable
 &emsp;&emsp;redux中，第一步肯定利用combineReducers来合并reducer并初始化state，redux自带的combineReducers只支持state是原生js形式的，所以这里我们需要使用redux-immutable提供的combineReducers来替换原来的方法
-```
+```javascript
 import {combineReducers} from 'redux-immutable';
 import dish from './dish';
 import menu from './menu';
@@ -264,7 +264,7 @@ export default rootReducer;
 ```
 &emsp;&emsp;reducer中的initialState肯定也需要初始化成immutable类型
 
-```
+```javascript
 const initialState = Immutable.Map({});
 export default function menu(state = initialState, action) {
     switch (action.type) {
@@ -275,7 +275,7 @@ export default function menu(state = initialState, action) {
 ```
 &emsp;&emsp;state成为了immutable类型，那相应的页面其他文件都需要做相应的写法改变
 
-```
+```javascript
 //connect
 function mapStateToProps(state) {
     return {
@@ -288,7 +288,7 @@ function mapStateToProps(state) {
 
 #### 服务端交互ajax封装
 &emsp;&emsp;前端代码使用了immutable，但服务端下发的数据还是json，所以需要统一在ajax处做封装并且将服务端返回数据转成immutable
-```
+```javascript
 //伪代码
 $.ajax({
     type: 'get',
@@ -309,7 +309,7 @@ $.ajax({
 &emsp;&emsp;**重中之重！**之前已经介绍了很多为什么要用immutable来改造shouldComponentUpdate，这里就不多说了，直接看怎么改造
 shouldComponentUpdate具体怎么封装有很多种办法，我们这里选择了封装一层component的基类，在基类中去统一处理shouldComponentUpdate，组件中直接继承基类的方式
 
-```
+```javascript
 //baseComponent.js   component的基类方法
   
 import React from 'react';
@@ -350,7 +350,7 @@ export default BaseComponent;
 ```
 &emsp;&emsp;组件中如果需要使用统一封装的shouldComponentUpdate，则直接继承基类
 
-```
+```javascript
 import BaseComponent from './BaseComponent';
 class Menu extends BaseComponent {
     constructor() {
@@ -379,7 +379,7 @@ class Menu extends BaseComponent {
 #### 2.js是弱类型，但Map类型的key必须是string！(看下图官网说明)
 ![](https://dn-mhke0kuv.qbox.me/2d90e7d01818f9793e6b.png)
 #### 3.所有针对immutable变量的增删改必须左边有赋值，因为所有操作都不会改变原来的值，只是生成一个新的变量
-```
+```javascript
 //javascript
 var arr = [1,2,3,4];
 arr.push(5);
@@ -395,7 +395,7 @@ arr = arr.push(5);
 console.log(arr) //[1,2,3,4,5]
 ```
 #### 4.引入immutablejs后，不应该再出现对象数组拷贝的代码(如下举例)
-```
+```javascript
 //es6对象复制
 var state = Object.assign({}, state, {
     key: value
@@ -407,7 +407,7 @@ var newArr = [].concat([1,2,3])
 ```
 #### 5. 获取深层深套对象的值时不需要做每一层级的判空
 
-```
+```javascript
 //javascript
 var obj = {a:1}
 var res = obj.a.b.c   //error
